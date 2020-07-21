@@ -199,11 +199,34 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
      python manage.py createsuperuser
      
 
- Execute o projeto e acesse o admin com as credenciais cadastradas 
+*  Execute o projeto e acesse o admin com as credenciais cadastradas 
  http://127.0.0.1:8000/admin/
  
 
 18 - Vamos criar os Models do produto. 
+
+    class Product(models.Model):
+        description = models.CharField('Nome do Produto', max_length=150)
+        price = models.DecimalField('Preço do produto', decimal_places=2, max_digits=6)
+        stock = models.IntegerField('Estoque Disponível')
+        stock_min = models.IntegerField('Mínimo estoque aceitável')
+    
+        def __str__(self):
+            return f'Produto ( {self.description} ) - Preço Unt ( {self.price} ) - Qtd em estoque ( {self.stock} ) '
+
+19 - Vamos registrar no admin:
+
+    from .models import Product
+    
+    admin.site.register(Product)
+
+
+
+
+* ###### Execute o projeto e acesse o admin onde já poderar fazer o cadastro de um produto.
+
+
+
 
  ###**Em breve atualizações com implementações de acesso via API REST.**
  
