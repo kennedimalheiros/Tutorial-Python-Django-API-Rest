@@ -1,4 +1,4 @@
-# Tutorial-Iniciando-Python-com-API-Rest
+## Tutorial Criando Uma aplicação python com API Rest Utilizando Django Rest Framework
 Tutorial para iniciantes em Python e Django com um Projeto de um PDV com API Rest
 
 1 - Instalar o PIP3
@@ -185,4 +185,23 @@ Ficando assim o arquivo **urls.py**:
        
     pip freeze > requirements.txt
     
+16 - Criar e executar as migrations:
+
+    make migrations
+    make migrate
+
+######"As migrações são a maneira do Django de propagar alterações que você faz nos seus modelos (adicionando um campo, excluindo um modelo etc.) no esquema do banco de dados. Eles foram projetados para serem principalmente automáticos, mas você precisará saber quando fazer migrações, quando executá-las e os problemas comuns em que poderá se deparar." https://docs.djangoproject.com/en/3.0/topics/migrations/ 
+
+ 17 - Vamos criar um Super User:
+ 
+     make superuser
+     ou
+     python manage.py createsuperuser
+     
+
+ Execute o projeto e acesse o admin com as credenciais cadastradas 
+ http://127.0.0.1:8000/admin/
+ 
+ 
+ ####**Em breve atualizações com implementações de acesso via API REST.**
  
