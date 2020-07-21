@@ -1,5 +1,7 @@
-## Tutorial Criando Uma aplicação python com API Rest Utilizando Django Rest Framework
-Tutorial para iniciantes em Python e Django com um Projeto de um PDV com API Rest
+## Tutorial Criando Uma aplicação python e Django, implementando api rest e deploy.
+
+Tutorial para iniciantes em Python e Django com um Projeto de Sistema para Gestão de estoque com PDV.
+
 
 1 - Instalar o PIP3
 
