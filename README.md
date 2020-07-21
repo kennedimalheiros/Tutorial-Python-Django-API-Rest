@@ -52,7 +52,7 @@ Caso não ative o comando para ativar uma virutal env é.
 
 4-Vamos instalar o Django dentro do env executando o comando abaixo:
 
-    pip install django
+    pip3 install django
 
 
 5 - Vamos criar o projeto Django 
@@ -111,16 +111,15 @@ Não esqueça do ponto no final, com ele apenas cria o projeto django, sem o pon
 
 9 - Uma app é uma biblioteca python que segue algumas convenções do Django.
 
-Para criar uma APP vamos utilizar o comando
+Para criar uma APP product vamos utilizar o comando
 
-    python manage.py startapp core
+    python manage.py startapp product
 
-CORE é o nome da primeira app, porque core significa núcleo, é apenas para facilitar o entendimento, mas pode ser qualquer nome.
 
 10 -Vamos instalar a APPs, sugiro que utilizem o Sublime ou Pycharm, mas podem utilizar outro editor de sua preferência.
 
 No arquivo chamado "settings.py" vamos adicionar no final do bloco "INSTALLED_APPS"
-ficando assim    'core' ou 'nomedoprojeto.core' depende de onde está a pasta core.
+ficando assim    'product' ou 'nomedoprojeto.product' depende de onde está a pasta da product.
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -129,7 +128,7 @@ ficando assim    'core' ou 'nomedoprojeto.core' depende de onde está a pasta co
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'core',
+        'product',
     ]
 
 
@@ -150,14 +149,11 @@ substituir por
 
 12 - CRIANDO DIRETORIO TEMPLATES
 
-Vamos na app core para criar um diretório com o nome "templates" para armazenar o os arquivos .html,  dentro deste diretório core/templates vamos criar um arquivo html com o nome index.html.
+Vamos na app product para criar um diretório com o nome "templates" para armazenar o os arquivos .html,  dentro deste diretório product/templates vamos criar um arquivo html com o nome index.html.
 
-Personalise seu index.html e execute o projeto utilizando o comando:
-
-    make run
+Personalise o arquivo index.html:
     
- 
-13 - Vamos criar a View home dentro da app core, no arquivo **views.py**
+13 - Vamos criar a View home dentro da app product, no arquivo **views.py**
 
     def home(request):
         return render(request, 'index.html')
@@ -167,25 +163,27 @@ Personalise seu index.html e execute o projeto utilizando o comando:
 
     path('', home),
 
-* Mas anter temos que importar a view:
+* Temos que importar a view:
 
-    
-    from core.views import home
+
+    from product.views import home
 
 Ficando assim o arquivo **urls.py**:
 
-    from core.views import home
+    from product.views import home
     
     urlpatterns = [
-        path('',home),
+        path('', home),
         path('admin/', admin.site.urls),
     ]
+
+Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
 
 15 - Criando o arquivo requirements, no terminal execute o comando: 
 
 ###### Esse arquivo nada mais é do que um arquivo de texto, contendo uma lista de itens/pacotes instalados.
        
-    pip freeze > requirements.txt
+    pip3 freeze > requirements.txt
     
 16 - Criar e executar as migrations:
 
@@ -204,6 +202,11 @@ Ficando assim o arquivo **urls.py**:
  Execute o projeto e acesse o admin com as credenciais cadastradas 
  http://127.0.0.1:8000/admin/
  
+
+18 - Vamos criar os Models do produto. 
+
+ ###**Em breve atualizações com implementações de acesso via API REST.**
  
- ####**Em breve atualizações com implementações de acesso via API REST.**
+ 
+ 
  

@@ -11,3 +11,4 @@ uwsgi_params
 *.pid
 *.dir
 local_settings.py
+Diagrama
