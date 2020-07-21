@@ -145,3 +145,44 @@ substituir por
   
     LANGUAGE_CODE = 'pt-br'
     TIME_ZONE = 'America/Sao_Paulo'
+
+12 - CRIANDO DIRETORIO TEMPLATES
+
+Vamos na app core para criar um diretório com o nome "templates" para armazenar o os arquivos .html,  dentro deste diretório core/templates vamos criar um arquivo html com o nome index.html.
+
+Personalise seu index.html e execute o projeto utilizando o comando:
+
+    make run
+    
+ 
+13 - Vamos criar a View home dentro da app core, no arquivo **views.py**
+
+    def home(request):
+        return render(request, 'index.html')
+
+
+14 - Vamos criar uma rota, para isso vamos no arquivo ( **urls.py** ) , logo dentro do bloco ( **urlpatterns** ) vamos adicionar o seguinte caminho.
+
+    path('', home),
+
+* Mas anter temos que importar a view:
+
+    
+    from core.views import home
+
+Ficando assim o arquivo **urls.py**:
+
+    from core.views import home
+    
+    urlpatterns = [
+        path('',home),
+        path('admin/', admin.site.urls),
+    ]
+
+15 - Criando o arquivo requirements, no terminal execute o comando: 
+
+###### Esse arquivo nada mais é do que um arquivo de texto, contendo uma lista de itens/pacotes instalados.
+       
+    pip freeze > requirements.txt
+    
+ 
