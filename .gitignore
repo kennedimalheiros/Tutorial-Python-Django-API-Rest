@@ -1,4 +1,13 @@
-db.sqlite3
+.idea/
+*.sqlite3
+venv
 *.pyc
-__pycache__
-staticfiles
+pdv/__pycache__/
+pdv.pem
+uwsgi.ini
+uwsgi_params
+*.bak
+*.dat
+*.pid
+*.dir
+local_settings.py
