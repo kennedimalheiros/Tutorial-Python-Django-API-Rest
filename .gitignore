@@ -12,3 +12,6 @@ uwsgi_params
 *.dir
 local_settings.py
 Diagrama
+**/migrations/*
+**/**/migrations/*
+migrations/*
