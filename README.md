@@ -227,8 +227,76 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
 
 
 
+20 -  Acessando produtos cadastrados pela API:
 
- ###**Em breve atualizações com implementações de acesso via API REST.**
+Primeiramente vou disponibilizar o link para que vocês tenham acesso a documentação:
+www.django-rest-framework.org
+
+Utilizando o comando abaixo vamos instalar o Djando Rest Framework:
+
+    pip install djangorestframework
+
+Registre rest_framework: 
+
+    INSTALLED_APPS = [
+        ...
+        'rest_framework',
+    ]
+
+21 - Vamos criar um arquivo urls.py dento da app product com o seguinte código:
+
+    from django.urls import path, include
+    from .views import ProductView
+    from rest_framework import routers
+    
+    router = routers.DefaultRouter()
+    router.register('', ProductView)
+    
+    urlpatterns = [
+        path('', include(router.urls))
+    ]
+
+22 - Criando um arquivo com o nome serializers.py dentro da app product com o seguinte código:
+
+* ###### Você pode subistituir `fields = '__all__'` pelo `fields = ['description']` informando o nome dos campos que deseja retornar.
+
+
+    from rest_framework import serializers
+    from .models import Product
+   
+   
+    class ProductSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Product
+            fields = '__all__'
+
+
+23 - Criando a rota do arquivo urls do projeto para a nossa app alterando o arquivo urls.py do projeto adicionando o seguinte comando:
+
+* ###### Não esqueça de importar o `from django.urls import include`
+
+        path('product/', include('product.urls')),
+
+24 - Criando uma class ProductView para servir os dados para api, acesse o arquivo views.py dentro da app product:
+ 
+
+    from rest_framework import viewsets
+    from .models import Product
+    from .serializers import ProductSerializer 
+ 
+     class ProductView(viewsets.ModelViewSet):
+        queryset = Product.objects.all()
+        serializer_class = ProductSerializer
+ 
+
+* Execute o projeto e acesse a url:
+
+    http://127.0.0.1:8000/product/
+    
+    http://127.0.0.1:8000/product/{ID_PRODUTO}
+
+
+###**Em breve novas atualizações.**
  
  
  
