@@ -203,6 +203,8 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
  http://127.0.0.1:8000/admin/
  
 
+![alt text](https://raw.githubusercontent.com/kennedimalheiros/Tutorial-Python-Django-API-Rest/master/diagrama.png)
+
 18 - Vamos criar os Models do produto. 
 
     class Product(models.Model):
