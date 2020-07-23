@@ -10,11 +10,14 @@ def home(request):
 
 
 class ProductFilter(filters.FilterSet):
-    description = filters.CharFilter(lookup_expr='icontains')
+    #description = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Product
-        fields = ('description',)
+        fields = {
+            'description': ['icontains'],
+            'stock': ['gte'],
+        }
 
 class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.all()

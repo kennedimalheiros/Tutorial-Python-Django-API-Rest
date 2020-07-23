@@ -21,7 +21,7 @@ O virtualenvwrapper não está localizado em / usr / local / bin
     cd ~/.local/bin/
     vim ~/.bashrc
 
-->> Adicione as seguintes linhas no final do arquivo.
+* Adicione as seguintes linhas no final do arquivo.
 
 		export WORKON_HOME=$HOME/.virtualenvs
 		export PROJECT_HOME=$HOME/Devel
@@ -358,6 +358,26 @@ Logo vamos ter que substituir o `filterset_fields = ('description', 'stock')`  d
 
 Agora já tenho retorno do produto Arroz pesquisando por uma parte do nome http://127.0.0.1:8000/product/?description=Arr
  
+ 25 - Agora vamos fazer a consulta pelo nome do produto e pela quantidade solicitada, 
+ Assim vamos obter um retorno dos produtos com estoque disponível.
+ 
+ Para isso vamos alterar a `class ProductFilter`, excluindo a linha:
+
+    ~~description = filters.CharFilter(lookup_expr='icontains')~~
+    
+Vamos alterar o fields onde ele vai receber o critério dos dois parâmetros:
+
+        ~~fields = ('description', 'stock')~~
+      
+              
+        fields = {
+            'description': ['icontains'],
+            'stock': ['gte'],
+        }
+ 
+ Agora já podemos consultar um produto  para saber se ele tem estoque disponível acessando a api:
+ 
+    http://127.0.0.1:8000/product/?description__icontains=Arroz&stock__gte=300
  
 ###**Em breve novas atualizações.**
  
