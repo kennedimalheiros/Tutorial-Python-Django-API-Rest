@@ -21,3 +21,6 @@ shell: clean
 
 run_rede: clean
 	./manage.py runserver 0.0.0.0:8000
+
+s: clean
+	git status
