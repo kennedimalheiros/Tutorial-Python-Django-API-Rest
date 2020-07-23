@@ -363,11 +363,11 @@ Agora já tenho retorno do produto Arroz pesquisando por uma parte do nome http:
  
  Para isso vamos alterar a `class ProductFilter`, excluindo a linha:
 
-    ~~description = filters.CharFilter(lookup_expr='icontains')~~
+  ~~description = filters.CharFilter(lookup_expr='icontains')~~
     
 Vamos alterar o fields onde ele vai receber o critério dos dois parâmetros:
 
-        ~~fields = ('description', 'stock')~~
+  ~~fields = ('description', 'stock')~~
       
               
         fields = {
