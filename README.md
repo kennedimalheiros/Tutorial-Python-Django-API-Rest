@@ -206,7 +206,7 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
 
 18 -  Iniciando a criação dos Models do Projeto.
 
-* Driagrama do projeto:
+* Diagrama do projeto:
 
 ![alt text](https://raw.githubusercontent.com/kennedimalheiros/Tutorial-Python-Django-API-Rest/master/diagrama.png)
 
@@ -233,7 +233,7 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
 
 
 
-* ###### Execute o projeto e acesse o admin onde já poderar fazer o cadastro de um produto.
+* ###### Execute o projeto e acesse o admin onde já poderá fazer o cadastro de um produto.
 
 
 
@@ -268,7 +268,7 @@ Registre rest_framework:
 
 22 - Criando um arquivo com o nome serializers.py dentro da app product com o seguinte código:
 
-* ###### Você pode subistituir `fields = '__all__'` pelo `fields = ['description']` informando o nome dos campos que deseja retornar.
+* ###### Você pode substituir `fields = '__all__'` pelo `fields = ['description']` informando o nome dos campos que deseja retornar.
 
 
     from rest_framework import serializers
@@ -305,7 +305,60 @@ Registre rest_framework:
     
     http://127.0.0.1:8000/product/{ID_PRODUTO}
 
+24 - Criando filtros na consulta da API:
 
+* Install o Django Filter 
+
+        pip3 install django-filter
+
+* Vamos registrar no Settings.py em INSTALLED_APPS com o seguinte comando: 
+
+        'django_filters',
+
+* No final do arquivo Settings.py vamos definir globalmente o DEFAULT_FILTER_BACKENDS adicionar seguinte comando:
+
+    REST_FRAMEWORK = {
+        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    }
+
+* No arquivo View.py adicionamos os campos de filtro `filterset_fields = ('description',)` ficando assim:
+* ###### Você pode adicionar quantos filtros quiser.
+
+        class ProductView(viewsets.ModelViewSet):
+            queryset = Product.objects.all()
+            serializer_class = ProductSerializer
+            filterset_fields = ('description',)
+
+Com isso já é possivel acessar a nossa API: http://127.0.0.1:8000/product/?description=Arroz
+mas temos um problema caso eu informe apenas uma parte do nome, ex: Arr eu não vou obter retorno, 
+vamos resolver isso com o seguinte comando:
+
+ * No arquivo View.py vamos importar:
+ 
+        from django_filters import rest_framework as filters
+
+E criar uma class ProductFilter:
+
+        class ProductFilter(filters.FilterSet):
+            description = filters.CharFilter(lookup_expr='icontains')
+        
+            class Meta:
+                model = Product
+                fields = ('description',)
+ 
+  
+Logo vamos ter que substituir o `filterset_fields = ('description', 'stock')`  da classe `ProductView` por 
+ `filterset_class = ProductFilter` ficando assim:
+ 
+ class ProductView(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filterset_class = ProductFilter
+ 
+
+Agora já tenho retorno do produto Arroz pesquisando por uma parte do nome http://127.0.0.1:8000/product/?description=Arr
+ 
+ 
 ###**Em breve novas atualizações.**
  
  
