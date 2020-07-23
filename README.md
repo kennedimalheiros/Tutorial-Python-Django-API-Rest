@@ -203,7 +203,17 @@ Executando o comando **make run** já vamos ter acesso a pagina que foi criada.
  http://127.0.0.1:8000/admin/
  
 
-18 - Vamos criar os Models do produto. 
+
+18 -  Iniciando a criação dos Models do Projeto.
+
+* Driagrama do projeto:
+
+![alt text](https://raw.githubusercontent.com/kennedimalheiros/Tutorial-Python-Django-API-Rest/master/diagrama.png)
+
+
+
+ Vamos criar o Model de produto.
+
 
     class Product(models.Model):
         description = models.CharField('Nome do Produto', max_length=150)
